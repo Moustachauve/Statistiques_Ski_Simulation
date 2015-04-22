@@ -1,0 +1,66 @@
+﻿@model statistiques_ski.Models.Sortie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sortie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CentreDeSki.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CentreDeSki.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Saison.SaisonID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Saison.SaisonID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skieur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skieur.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NbDescente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbDescente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NbPiedVert)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbPiedVert)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SortieID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

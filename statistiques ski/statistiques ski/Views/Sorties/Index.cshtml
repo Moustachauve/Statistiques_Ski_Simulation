@@ -1,0 +1,51 @@
+﻿@model IEnumerable<statistiques_ski.Models.Sortie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CentreDeSki.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbDescente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbPiedVert)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CentreDeSki.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbDescente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbPiedVert)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SortieID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SortieID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SortieID })
+        </td>
+    </tr>
+}
+
+</table>
