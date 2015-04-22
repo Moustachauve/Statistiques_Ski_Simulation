@@ -4,24 +4,34 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h3>Filtrer par region:</h3>
+    <select name="filterBy">
+        <option value="0">Tous</option>
+        @foreach (var item in ViewBag.regions)
+        {
+            if (item.RegionID == ViewBag.RegionID)
+            {
+                <option value="@item.RegionID" selected="selected">@item.NomRegion</option>
+            }
+            else
+            {
+                <option value="@item.RegionID">@item.NomRegion</option>
+            }
+        }
+    </select>
+    <input type="submit" value="Filtrer" class="btn btn-default" />
+}
+
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>Saison</th>
             @foreach (var item in ViewBag.saisons)
             {
-                string saison = "";
-                if (item.SaisonSurDeuxAns)
-                {
-                    int temp = item.AnneeDebutSaison + 1;
-                    saison = "" + item.AnneeDebutSaison + "-" + temp;
-                }
-                else
-                {
-                    saison = "" + item.AnneeDebutSaison;
-                }
-                <th>@saison</th>
-
+                <th class="text-center">@item.FormattedName</th>
             }
         </tr>
     </thead>
@@ -44,7 +54,7 @@
             }
             if (nbSortieTotalAVie == 0)
             {
-                <tr class="alert-warning">
+                <tr class="alert-info">
                     <td>@centreDeSki.Nom</td>
                     @foreach (var saison in ViewBag.saisons)
                     {
