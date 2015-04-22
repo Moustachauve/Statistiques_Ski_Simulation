@@ -13,12 +13,13 @@ namespace statistiques_ski.Controllers
 {
     public class SortiesController : Controller
     {
-        private Statistiques_SkiContext db = new Statistiques_SkiContext();
+        //private Statistiques_SkiContext db = new Statistiques_SkiContext();
+        private UnitOfWork uow = new UnitOfWork();
 
         // GET: Sorties
         public ActionResult Index()
         {
-            var sorties = db.Sorties.Include(s => s.CentreDeSki).Include(s => s.Saison).Include(s => s.Skieur);
+            var sorties = uow.SortieRepository.Get();
             return View(sorties.ToList());
         }
 
@@ -29,7 +30,7 @@ namespace statistiques_ski.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sortie sortie = db.Sorties.Find(id);
+            Sortie sortie = uow.SortieRepository.GetByID(id);
             if (sortie == null)
             {
                 return HttpNotFound();
@@ -40,9 +41,9 @@ namespace statistiques_ski.Controllers
         // GET: Sorties/Create
         public ActionResult Create()
         {
-            ViewBag.CentreDeSkiID = new SelectList(db.CentreDeSkis, "CentreDeSkiID", "Nom");
-            ViewBag.SaisonID = new SelectList(db.Saisons, "SaisonID", "SaisonID");
-            ViewBag.SkieurID = new SelectList(db.Skieurs, "SkieurID", "Nom");
+            ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom");
+            ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID");
+            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom");
             return View();
         }
 
@@ -55,14 +56,14 @@ namespace statistiques_ski.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Sorties.Add(sortie);
-                db.SaveChanges();
+                uow.SortieRepository.Insert(sortie);
+                uow.Save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CentreDeSkiID = new SelectList(db.CentreDeSkis, "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
-            ViewBag.SaisonID = new SelectList(db.Saisons, "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(db.Skieurs, "SkieurID", "Nom", sortie.SkieurID);
+            ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
+            ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
+            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
             return View(sortie);
         }
 
@@ -73,14 +74,14 @@ namespace statistiques_ski.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sortie sortie = db.Sorties.Find(id);
+            Sortie sortie = uow.SortieRepository.GetByID(id);
             if (sortie == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CentreDeSkiID = new SelectList(db.CentreDeSkis, "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
-            ViewBag.SaisonID = new SelectList(db.Saisons, "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(db.Skieurs, "SkieurID", "Nom", sortie.SkieurID);
+            ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
+            ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
+            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
             return View(sortie);
         }
 
@@ -93,13 +94,13 @@ namespace statistiques_ski.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sortie).State = EntityState.Modified;
-                db.SaveChanges();
+                uow.SortieRepository.Update(sortie);
+                uow.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.CentreDeSkiID = new SelectList(db.CentreDeSkis, "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
-            ViewBag.SaisonID = new SelectList(db.Saisons, "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(db.Skieurs, "SkieurID", "Nom", sortie.SkieurID);
+            ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
+            ViewBag.SaisonID = new SelectList(uow.CentreDeSkiRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
+            ViewBag.SkieurID = new SelectList(uow.CentreDeSkiRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
             return View(sortie);
         }
 
@@ -110,7 +111,7 @@ namespace statistiques_ski.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sortie sortie = db.Sorties.Find(id);
+            Sortie sortie = uow.SortieRepository.GetByID(id);
             if (sortie == null)
             {
                 return HttpNotFound();
@@ -123,9 +124,9 @@ namespace statistiques_ski.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Sortie sortie = db.Sorties.Find(id);
-            db.Sorties.Remove(sortie);
-            db.SaveChanges();
+            Sortie sortie = uow.SortieRepository.GetByID(id);
+            uow.SortieRepository.Delete(sortie);
+            uow.Save();
             return RedirectToAction("Index");
         }
 
@@ -133,7 +134,7 @@ namespace statistiques_ski.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                uow.Dispose();
             }
             base.Dispose(disposing);
         }
