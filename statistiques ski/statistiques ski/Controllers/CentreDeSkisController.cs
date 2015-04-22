@@ -19,7 +19,7 @@ namespace statistiques_ski.Controllers
         // GET: CentreDeSkis
         public ActionResult Index()
         {
-			var centreDeSkis = unitOfWork.CentreDeSkiRepository.GetForUser(unitOfWork.CurrentUserID);//db.CentreDeSkis.Include(c => c.Region).Include(c => c.Skieur);
+			var centreDeSkis = unitOfWork.CentreDeSkiRepository.GetForSkieur(unitOfWork.CurrentUserID);//db.CentreDeSkis.Include(c => c.Region).Include(c => c.Skieur);
             return View(centreDeSkis.ToList());
         }
 
@@ -108,7 +108,7 @@ namespace statistiques_ski.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-			CentreDeSki centreDeSki = unitOfWork.CentreDeSkiRepository.GetForUserByID((int)id, unitOfWork.CurrentUserID);
+			CentreDeSki centreDeSki = unitOfWork.CentreDeSkiRepository.GetForSkieurByID((int)id, unitOfWork.CurrentUserID);
             if (centreDeSki == null)
             {
                 return HttpNotFound();
@@ -121,7 +121,7 @@ namespace statistiques_ski.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-			CentreDeSki centreDeSki = unitOfWork.CentreDeSkiRepository.GetForUserByID((int)id, unitOfWork.CurrentUserID);
+			CentreDeSki centreDeSki = unitOfWork.CentreDeSkiRepository.GetForSkieurByID((int)id, unitOfWork.CurrentUserID);
 			unitOfWork.CentreDeSkiRepository.Delete(centreDeSki);
 			unitOfWork.Save();
             return RedirectToAction("Index");

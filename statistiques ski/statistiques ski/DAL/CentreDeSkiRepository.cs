@@ -16,12 +16,12 @@ namespace statistiques_ski.DAL
 			return Get(includeProperties: "Region,Sorties");
 		}
 
-		public IEnumerable<CentreDeSki> GetForUser(int userID)
+		public IEnumerable<CentreDeSki> GetForSkieur(int userID)
 		{
 			return Get(includeProperties: "Region,Sorties", filter: x => x.Region.SkieurID == userID);
 		}
 
-		public CentreDeSki GetForUserByID(int id, int userID)
+		public CentreDeSki GetForSkieurByID(int id, int userID)
 		{
 			CentreDeSki centreTrouve = GetByID(id);
 			if (centreTrouve != null && centreTrouve.Region.SkieurID == userID)

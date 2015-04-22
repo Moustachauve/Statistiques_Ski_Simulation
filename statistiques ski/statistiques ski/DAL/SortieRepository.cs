@@ -15,6 +15,20 @@ namespace statistiques_ski.DAL
 			return Get(includeProperties: "CentreDeSki,Saison");
 		}
 
+		public IEnumerable<Sortie> GetForSkieur(int userID)
+		{
+			return Get(includeProperties: "Region,Sorties", filter: x => x.Saison.SkieurID == userID);
+		}
+
+		public Sortie GetForSkieurByID(int id, int userID)
+		{
+			Sortie sortieTrouve = GetByID(id);
+			if (sortieTrouve != null && sortieTrouve.Saison.SkieurID == userID)
+				return sortieTrouve;
+
+			return null;
+		}
+
         public IEnumerable<Sortie> GetOrderBy(string orderBy, bool asc)
         {
             Func<IQueryable<Sortie>, IOrderedQueryable<Sortie>> orderLambda = null;
