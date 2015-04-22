@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
+    bool futureAsc = ViewBag.isAsc != null ? !ViewBag.isAsc : false;
+    string fleche = futureAsc ? "▲" : "▼";
 }
 
 <h2>Index</h2>
@@ -15,18 +17,19 @@
             @Html.DisplayNameFor(model => model.CentreDeSki.Nom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NbDescente)
+            @Html.ActionLink("Nombre de Descentes" + (ViewBag.orderBy == "NbDescente" ? fleche : ""), "Index", new { orderBy = "NbDescente", asc = futureAsc })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NbPiedVert)
+            @Html.ActionLink("Nombre de pied verticaux" + (ViewBag.orderBy == "NbPiedVert" ? fleche : ""), "Index", new { orderBy = "NbPiedVert", asc = futureAsc })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.ActionLink("Date" + (ViewBag.orderBy == "Date" ? fleche : ""), "Index", new { orderBy = "Date", asc = futureAsc })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CentreDeSki.Nom)

@@ -15,5 +15,36 @@ namespace statistiques_ski.DAL
 			return Get(includeProperties: "CentreDeSki,Saison,Skieur");
 		}
 
+        public IEnumerable<Sortie> GetOrderBy(string orderBy, bool asc)
+        {
+            Func<IQueryable<Sortie>, IOrderedQueryable<Sortie>> orderLambda = null;
+
+            switch (orderBy)
+            {
+                case "NbPiedVert":
+                    if (asc) 
+                        orderLambda = x => x.OrderBy(y => y.NbPiedVert);
+                    else
+                        orderLambda = x => x.OrderByDescending(y => y.NbPiedVert);
+                    break;
+                case "NbDescente":
+                    if (asc)
+                        orderLambda = x => x.OrderBy(y => y.NbDescente);
+                    else
+                        orderLambda = x => x.OrderByDescending(y => y.NbDescente);
+                    break;
+                case "Date":
+                    if (asc)
+                        orderLambda = x => x.OrderBy(y => y.Date);
+                    else
+                        orderLambda = x => x.OrderByDescending(y => y.Date);
+                    break;
+       
+            }
+
+
+            return Get(includeProperties: "CentreDeSki,Saison,Skieur", orderBy: orderLambda);
+        }
+
 	}
 }

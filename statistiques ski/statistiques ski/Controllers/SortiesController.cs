@@ -17,9 +17,25 @@ namespace statistiques_ski.Controllers
         private UnitOfWork uow = new UnitOfWork();
 
         // GET: Sorties
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var sorties = uow.SortieRepository.Get();
+        //    return View(sorties.ToList());
+        //}
+
+        [HttpGet]
+        public ActionResult Index(string orderBy, bool? asc)
         {
-            var sorties = uow.SortieRepository.Get();
+            IEnumerable<Sortie> sorties = null;
+
+            ViewBag.isAsc = asc;
+            ViewBag.orderBy = orderBy;
+
+            if (orderBy == null)
+                sorties = uow.SortieRepository.Get();
+            else
+                sorties = uow.SortieRepository.GetOrderBy(orderBy, asc != null ? (bool)asc : false);
+
             return View(sorties.ToList());
         }
 
