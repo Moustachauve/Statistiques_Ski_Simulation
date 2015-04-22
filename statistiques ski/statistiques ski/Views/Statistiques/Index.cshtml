@@ -33,12 +33,14 @@
             {
                 <th class="text-center">@item.FormattedName</th>
             }
+            <th class="text-right">Total</th>
         </tr>
     </thead>
     <tbody>
+
         @foreach (var centreDeSki in ViewBag.centreDeSkis)
         {
-            int nbSortieTotalAVie = 0;
+            int nbSortieTotalParCentreDeSki = 0;
             foreach (var saison in ViewBag.saisons)
             {
                 foreach (var sortie in ViewBag.sorties)
@@ -47,12 +49,12 @@
                     {
                         if (sortie.SaisonID == saison.SaisonID)
                         {
-                            nbSortieTotalAVie++;
+                            nbSortieTotalParCentreDeSki++;
                         }
                     }
                 }
             }
-            if (nbSortieTotalAVie == 0)
+            if (nbSortieTotalParCentreDeSki == 0)
             {
                 <tr class="alert-info">
                     <td>@centreDeSki.Nom</td>
@@ -60,6 +62,7 @@
                     {
                         <td></td>
                     }
+                    <td class="text-right">0</td>
                 </tr>
             }
             else
@@ -68,28 +71,47 @@
                     <td>@centreDeSki.Nom</td>
                     @foreach (var saison in ViewBag.saisons)
                     {
-                        int nbSortieTotal = 0;
+                        int nbSortieParSaisonParCentreDeSki = 0;
                         foreach (var sortie in ViewBag.sorties)
                         {
                             if (sortie.CentreDeSkiID == centreDeSki.CentreDeSkiID)
                             {
                                 if (sortie.SaisonID == saison.SaisonID)
                                 {
-                                    nbSortieTotal++;
+                                    nbSortieParSaisonParCentreDeSki++;
                                 }
                             }
                         }
-                        if (nbSortieTotal == 0)
+                        if (nbSortieParSaisonParCentreDeSki == 0)
                         {
                             <td></td>
                         }
                         else
                         {
-                            <td class="text-center">@nbSortieTotal</td>
+                            <td class="text-center">@nbSortieParSaisonParCentreDeSki</td>
                         }
                     }
+                    <td class="text-right">@nbSortieTotalParCentreDeSki</td>
                 </tr>
             }
         }
+        <tr>
+            <td>Total</td>
+            @{int nbSortieTotal = 0;}
+            @foreach (var saison in ViewBag.saisons)
+            {
+                int nbSortieTotalParSaison = 0;
+                foreach (var sortie in ViewBag.sorties)
+                {
+                    if (sortie.SaisonID == saison.SaisonID)
+                    {
+                        nbSortieTotalParSaison++;
+                        nbSortieTotal++;
+                    }
+                }
+                <td class="text-right">@nbSortieTotalParSaison</td>
+            }
+            <td class="text-right">@nbSortieTotal</td>
+        </tr>
     </tbody>
 </table>
