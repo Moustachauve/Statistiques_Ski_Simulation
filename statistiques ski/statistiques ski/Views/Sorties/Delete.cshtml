@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CentreDeSki.Nom)
+            @Html.LabelFor(model => model.CentreDeSki.Nom)
         </dt>
 
         <dd>
@@ -20,23 +20,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Saison.SaisonID)
+            @Html.LabelFor(model => model.SaisonID, "Saison")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Saison.SaisonID)
+            @Html.DisplayFor(model => model.Saison.FormattedName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Skieur.Nom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Skieur.Nom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NbDescente)
+            @Html.LabelFor(model => model.NbDescente)
         </dt>
 
         <dd>
@@ -44,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NbPiedVert)
+            @Html.LabelFor(model => model.NbPiedVert, "Pieds verticaux")
         </dt>
 
         <dd>
@@ -52,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.LabelFor(model => model.Date, "Date")
         </dt>
 
         <dd>
