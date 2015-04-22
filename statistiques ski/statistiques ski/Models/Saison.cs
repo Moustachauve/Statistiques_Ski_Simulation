@@ -11,8 +11,13 @@ namespace statistiques_ski.Models
     public class Saison
     {
         public int SaisonID { get; set; }
+
+        [Display(Name="Année du début de la saison")]
         public int AnneeDebutSaison { get; set; }
+
+        [Display(Name = "Saison sur deux ans?")]
         public bool SaisonSurDeuxAns { get; set; }
+
         public virtual ICollection<Sortie> Sorties { get; set; }
 
         [ForeignKey("Skieur")]
