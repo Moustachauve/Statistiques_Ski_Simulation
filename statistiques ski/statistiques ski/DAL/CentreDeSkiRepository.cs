@@ -13,7 +13,7 @@ namespace statistiques_ski.DAL
 
 		public IEnumerable<CentreDeSki> Get()
 		{
-			return Get(includeProperties: "Region,Sortie");
+			return Get(includeProperties: "Region,Sorties");
 		}
     }
 }

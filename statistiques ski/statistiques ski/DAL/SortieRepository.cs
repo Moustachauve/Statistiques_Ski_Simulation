@@ -12,7 +12,7 @@ namespace statistiques_ski.DAL
 
 		public IEnumerable<Sortie> Get()
 		{
-			return Get(includeProperties: "CentreDeSki, Saison, Skieur");
+			return Get(includeProperties: "CentreDeSki,Saison,Skieur");
 		}
 
 	}

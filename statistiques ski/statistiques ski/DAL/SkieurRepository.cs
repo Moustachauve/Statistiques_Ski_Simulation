@@ -14,7 +14,7 @@ namespace statistiques_ski.DAL
 
 		public IEnumerable<Skieur> Get()
 		{
-			return Get(includeProperties: "Saison,Sortie,Saison,Region,CentreDeSki");
+			return Get(includeProperties: "Sorties,Saisons,Regions,CentreDeSkis");
 		}
     }
 }
