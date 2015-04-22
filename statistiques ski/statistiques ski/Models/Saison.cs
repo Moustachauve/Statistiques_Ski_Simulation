@@ -23,5 +23,18 @@ namespace statistiques_ski.Models
         [ForeignKey("Skieur")]
         public int SkieurID { get; set; }
         public virtual Skieur Skieur { get; set; }
+
+
+		//Variables calculé
+		public string FormattedName
+		{
+			get
+			{
+				if (SaisonSurDeuxAns)
+					return AnneeDebutSaison + "-" + (AnneeDebutSaison + 1);
+
+				return AnneeDebutSaison.ToString();
+			}
+		}
     }
 }
