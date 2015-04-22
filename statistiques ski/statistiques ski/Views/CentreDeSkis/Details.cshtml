@@ -1,0 +1,66 @@
+﻿@model statistiques_ski.Models.CentreDeSki
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CentreDeSki</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Region.NomRegion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region.NomRegion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skieur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skieur.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NbPistes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbPistes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Altitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Altitude)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CentreDeSkiID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

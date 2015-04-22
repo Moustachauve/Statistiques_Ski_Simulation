@@ -1,0 +1,63 @@
+﻿@model IEnumerable<statistiques_ski.Models.CentreDeSki>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Region.NomRegion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Skieur.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbPistes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Altitude)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Region.NomRegion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Skieur.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbPistes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Altitude)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CentreDeSkiID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CentreDeSkiID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CentreDeSkiID })
+        </td>
+    </tr>
+}
+
+</table>
