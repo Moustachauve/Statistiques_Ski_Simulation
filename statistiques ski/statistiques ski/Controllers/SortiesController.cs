@@ -58,8 +58,8 @@ namespace statistiques_ski.Controllers
         public ActionResult Create()
         {
             ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom");
-            ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID");
-            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom");
+            ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "AnneeDebutSaison");
+            //ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom");
             return View();
         }
 
@@ -68,18 +68,19 @@ namespace statistiques_ski.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SortieID,NbDescente,NbPiedVert,Date,CentreDeSkiID,SkieurID,SaisonID")] Sortie sortie)
+        public ActionResult Create([Bind(Include = "SortieID,NbDescente,NbPiedVert,Date,CentreDeSkiID,SaisonID")] Sortie sortie)
         {
             if (ModelState.IsValid)
             {
                 uow.SortieRepository.Insert(sortie);
+                sortie.SkieurID = uow.CurrentUserID;
                 uow.Save();
                 return RedirectToAction("Index");
             }
 
             ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
             ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
+            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", uow.CurrentUserID);
             return View(sortie);
         }
 
