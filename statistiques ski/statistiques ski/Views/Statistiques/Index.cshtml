@@ -25,10 +25,10 @@
     <input type="submit" value="Filtrer" class="btn btn-default" />
 }
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover table-condensed table-striped">
     <thead>
         <tr>
-            <th>Saison</th>
+            <th></th>
             @foreach (var item in ViewBag.saisons)
             {
                 <th class="text-center">@item.FormattedName</th>
@@ -56,8 +56,8 @@
             }
             if (nbSortieTotalParCentreDeSki == 0)
             {
-                <tr class="alert-info">
-                    <td>@centreDeSki.Nom</td>
+                <tr>
+                    <td class="success">@centreDeSki.Nom</td>
                     @foreach (var saison in ViewBag.saisons)
                     {
                         <td></td>
@@ -105,8 +105,19 @@
                 {
                     if (sortie.SaisonID == saison.SaisonID)
                     {
-                        nbSortieTotalParSaison++;
-                        nbSortieTotal++;
+                        if (ViewBag.RegionID != 0)
+                        {
+                            if (sortie.CentreDeSki.RegionID == ViewBag.RegionID)
+                            {
+                                nbSortieTotalParSaison++;
+                                nbSortieTotal++;
+                            }
+                        }
+                        else
+                        {
+                            nbSortieTotalParSaison++;
+                            nbSortieTotal++;
+                        }
                     }
                 }
                 <td class="text-right">@nbSortieTotalParSaison</td>
