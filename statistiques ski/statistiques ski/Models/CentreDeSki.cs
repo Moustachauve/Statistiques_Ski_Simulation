@@ -25,6 +25,10 @@ namespace statistiques_ski.Models
 		public int RegionID { get; set; }
 		public virtual Region Region { get; set; }
 
+		[ForeignKey("Skieur")]
+		public int SkieurID { get; set; }
+		public virtual Skieur Skieur { get; set; }
+
 		public virtual ICollection<Sortie> Sorties { get; set; }
     }
 }
