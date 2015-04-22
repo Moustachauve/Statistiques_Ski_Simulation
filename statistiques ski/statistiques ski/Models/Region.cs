@@ -18,7 +18,7 @@ namespace statistiques_ski.Models
         public virtual ICollection<CentreDeSki> CentreDeSkis { get; set; }
 
         [ForeignKey("Skieur")]
-        public virtual int SkieurID { get; set; }
+        public int SkieurID { get; set; }
         public virtual Skieur Skieur { get; set; }
     }
 }
