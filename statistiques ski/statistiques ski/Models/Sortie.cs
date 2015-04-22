@@ -21,6 +21,8 @@ namespace statistiques_ski.Models
 		[Display(Name = "Date de sortie")]
 		public DateTime Date { get; set; }
 
+
+        [Display(Name = "Centre de ski")]
 		[ForeignKey("CentreDeSki")]
 		public int CentreDeSkiID { get; set; }
 		public virtual CentreDeSki CentreDeSki { get; set; }
