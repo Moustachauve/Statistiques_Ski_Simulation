@@ -79,7 +79,7 @@ namespace statistiques_ski.Controllers
 
             ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
             ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
+            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.Saison.SkieurID);
             return View(sortie);
         }
 
@@ -97,7 +97,7 @@ namespace statistiques_ski.Controllers
             }
             ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
             ViewBag.SaisonID = new SelectList(uow.SaisonRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
+			ViewBag.SkieurID = new SelectList(uow.SkieurRepository.Get(), "SkieurID", "Nom", sortie.Saison.SkieurID);
             return View(sortie);
         }
 
@@ -116,7 +116,7 @@ namespace statistiques_ski.Controllers
             }
             ViewBag.CentreDeSkiID = new SelectList(uow.CentreDeSkiRepository.Get(), "CentreDeSkiID", "Nom", sortie.CentreDeSkiID);
             ViewBag.SaisonID = new SelectList(uow.CentreDeSkiRepository.Get(), "SaisonID", "SaisonID", sortie.SaisonID);
-            ViewBag.SkieurID = new SelectList(uow.CentreDeSkiRepository.Get(), "SkieurID", "Nom", sortie.SkieurID);
+			ViewBag.SkieurID = new SelectList(uow.CentreDeSkiRepository.Get(), "SkieurID", "Nom", sortie.Saison.SkieurID);
             return View(sortie);
         }
 

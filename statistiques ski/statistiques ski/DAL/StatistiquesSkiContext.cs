@@ -15,7 +15,9 @@ namespace statistiques_ski.DAL
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+			//modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+			modelBuilder.Entity<CentreDeSki>().HasMany(e => e.Sorties).WithRequired(e => e.CentreDeSki).WillCascadeOnDelete(true);
+			modelBuilder.Entity<Saison>().HasMany(e => e.Sorties).WithRequired(e => e.Saison).WillCascadeOnDelete(false);
 		}
 
 
