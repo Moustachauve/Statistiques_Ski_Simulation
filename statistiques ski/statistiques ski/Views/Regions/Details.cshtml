@@ -1,0 +1,34 @@
+﻿@model statistiques_ski.Models.Region
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Region</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Skieur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skieur.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomRegion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomRegion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RegionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
