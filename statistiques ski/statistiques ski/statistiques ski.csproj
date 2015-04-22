@@ -120,7 +120,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\CentreDeSkiRepository.cs" />
+    <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="DAL\IUnitOfWork.cs" />
+    <Compile Include="DAL\RegionRepository.cs" />
+    <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\SaisonRepository.cs" />
+    <Compile Include="DAL\SkieurRepository.cs" />
+    <Compile Include="DAL\SortieRepository.cs" />
     <Compile Include="DAL\StatistiquesSkiContext.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
