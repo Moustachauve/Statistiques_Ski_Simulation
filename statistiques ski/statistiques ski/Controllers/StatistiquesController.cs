@@ -23,29 +23,29 @@ namespace statistiques_ski.Controllers
 					int temp = (int)filterBy.ConvertTo(typeof(int));
 					if (temp != 0)
 					{
-						ViewBag.centreDeSkis = uow.CentreDeSkiRepository.Get(filter: x => x.RegionID == temp && x.Region.SkieurID == uow.CurrentUserID);
+						ViewBag.centreDeSkis = uow.CentreDeSkiRepository.Get(filter: x => x.RegionID == temp && x.Region.SkieurID == uow.CurrentUserID).OrderBy(x => x.Nom);
 						ViewBag.RegionID = temp;
 					}
 					else
 					{
-						ViewBag.centreDeSkis = uow.CentreDeSkiRepository.GetForSkieur(uow.CurrentUserID);
+						ViewBag.centreDeSkis = uow.CentreDeSkiRepository.GetForSkieur(uow.CurrentUserID).OrderBy(x => x.Nom);
 						ViewBag.RegionID = temp;
 					}
 				}
 				else
 				{
-					ViewBag.centreDeSkis = uow.CentreDeSkiRepository.GetForSkieur(uow.CurrentUserID);
+					ViewBag.centreDeSkis = uow.CentreDeSkiRepository.GetForSkieur(uow.CurrentUserID).OrderBy(x => x.Nom);
 					ViewBag.RegionID = 0;
 				}
 			}
 			else
 			{
-				ViewBag.centreDeSkis = uow.CentreDeSkiRepository.GetForSkieur(uow.CurrentUserID);
+				ViewBag.centreDeSkis = uow.CentreDeSkiRepository.GetForSkieur(uow.CurrentUserID).OrderBy(x => x.Nom);
 				ViewBag.RegionID = 0;
 			}
 
 			ViewBag.sorties = uow.SortieRepository.GetForSkieur(uow.CurrentUserID);
-			ViewBag.saisons = uow.SaisonRepository.GetForSkieur(uow.CurrentUserID);
+			ViewBag.saisons = uow.SaisonRepository.GetForSkieur(uow.CurrentUserID).OrderBy(x => x.AnneeDebutSaison);
 			ViewBag.regions = uow.RegionRepository.GetForSkieur(uow.CurrentUserID);
 
 			return View();
