@@ -5,58 +5,44 @@ using System.Web;
 
 namespace statistiques_ski.DAL
 {
-    public class UnitOfWork : IUnitOfWork
-    {
-        private Statistiques_SkiContext context = new Statistiques_SkiContext();
+	public class UnitOfWork : IUnitOfWork
+	{
+		private Statistiques_SkiContext context = new Statistiques_SkiContext();
 
-        private RegionRepository regionrepository;
-        public RegionRepository RegionRepository
-        {
-            get
-            {
-                if (this.regionrepository == null)
-                {
-                    this.regionrepository = new RegionRepository(context);
-                }
-                return regionrepository;
-            }
-        }
+		private SortieRepository sortieRepository;
 
-        private SaisonRepository saisonrepository;
-        public SaisonRepository SaisonRepository
-        {
-            get
-            {
-                if (this.saisonrepository == null)
-                {
-                    this.saisonrepository = new SaisonRepository(context);
-                }
-                return saisonrepository;
-            }
-        }
+		public SortieRepository SortieRepository
+		{
+			get
+			{
+				if (this.sortieRepository == null)
+					this.sortieRepository = new SortieRepository(context);
+				return this.sortieRepository;
+			}
+		}
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+		public void Save()
+		{
+			context.SaveChanges();
+		}
 
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
+		private bool disposed = false;
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!this.disposed)
+			{
+				if (disposing)
+				{
+					context.Dispose();
+				}
+			}
+			this.disposed = true;
+		}
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-    }
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+	}
 }
