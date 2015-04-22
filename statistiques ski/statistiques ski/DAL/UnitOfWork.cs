@@ -9,6 +9,32 @@ namespace statistiques_ski.DAL
     {
         private Statistiques_SkiContext context = new Statistiques_SkiContext();
 
+        private RegionRepository regionrepository;
+        public RegionRepository RegionRepository
+        {
+            get
+            {
+                if (this.regionrepository == null)
+                {
+                    this.regionrepository = new RegionRepository(context);
+                }
+                return regionrepository;
+            }
+        }
+
+        private SaisonRepository saisonrepository;
+        public SaisonRepository SaisonRepository
+        {
+            get
+            {
+                if (this.saisonrepository == null)
+                {
+                    this.saisonrepository = new SaisonRepository(context);
+                }
+                return saisonrepository;
+            }
+        }
+
         public void Save()
         {
             context.SaveChanges();
