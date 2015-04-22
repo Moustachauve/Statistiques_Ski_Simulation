@@ -7,6 +7,9 @@ namespace statistiques_ski.DAL
 {
 	public class UnitOfWork : IUnitOfWork
 	{
+
+		public int CurrentUserID { get { return 1; } }
+
 		private Statistiques_SkiContext context = new Statistiques_SkiContext();
 
         private CentreDeSkiRepository centreDeSkiRepository;
