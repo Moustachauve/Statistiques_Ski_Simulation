@@ -34,7 +34,7 @@ namespace statistiques_ski.Controllers
             if (orderBy == null)
                 sorties = uow.SortieRepository.Get();
             else
-                sorties = uow.SortieRepository.GetOrderBy(orderBy, asc != null ? (bool)asc : false);
+                sorties = uow.SortieRepository.GetOrderBy(orderBy, asc != null ? (bool)asc : false, uow.CurrentUserID);
 
             return View(sorties.ToList());
         }

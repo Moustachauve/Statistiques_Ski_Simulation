@@ -29,7 +29,7 @@ namespace statistiques_ski.DAL
 			return null;
 		}
 
-        public IEnumerable<Sortie> GetOrderBy(string orderBy, bool asc)
+        public IEnumerable<Sortie> GetOrderBy(string orderBy, bool asc, int userID)
         {
             Func<IQueryable<Sortie>, IOrderedQueryable<Sortie>> orderLambda = null;
 
@@ -57,7 +57,7 @@ namespace statistiques_ski.DAL
             }
 
 
-            return Get(includeProperties: "CentreDeSki,Saison", orderBy: orderLambda);
+			return Get(includeProperties: "CentreDeSki,Saison", orderBy: orderLambda, filter: x => x.Saison.SkieurID == userID);
         }
 
 	}
