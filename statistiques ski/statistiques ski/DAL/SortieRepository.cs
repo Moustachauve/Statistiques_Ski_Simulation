@@ -57,7 +57,7 @@ namespace statistiques_ski.DAL
             }
 
 
-            return Get(includeProperties: "CentreDeSki,Saison,Skieur", orderBy: orderLambda);
+            return Get(includeProperties: "CentreDeSki,Saison", orderBy: orderLambda);
         }
 
 	}
