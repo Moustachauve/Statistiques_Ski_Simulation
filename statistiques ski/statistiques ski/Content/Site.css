@@ -22,3 +22,23 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.white_text a {
+	color:#fff!important;
+	line-height:12px
+}
+
+.white_text a:hover {
+	color:#666!important;
+}
+
+	body
+{
+	background-image:url(../Images/snow-mountain.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+}
+
+.body-content {
+	background-color:#fff;
+}
