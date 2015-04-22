@@ -73,6 +73,7 @@ namespace statistiques_ski.Controllers
             if (ModelState.IsValid)
             {
                 uow.SortieRepository.Insert(sortie);
+                sortie.Saison = uow.SaisonRepository.GetByID(sortie.SaisonID);
                 sortie.Saison.SkieurID = uow.CurrentUserID;
                 uow.Save();
                 return RedirectToAction("Index");
