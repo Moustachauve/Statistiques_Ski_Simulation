@@ -35,6 +35,32 @@ namespace statistiques_ski.DAL
             }
         }
 
+		private CentreDeSkiRepository centreDeSkiRepository;
+		public CentreDeSkiRepository CentreDeSkiRepository
+		{
+			get
+			{
+				if (this.centreDeSkiRepository == null)
+				{
+					this.centreDeSkiRepository = new CentreDeSkiRepository(context);
+				}
+				return this.centreDeSkiRepository;
+			}
+		}
+
+		private SkieurRepository skieurRepository;
+		public SkieurRepository SkieurRepository
+		{
+			get
+			{
+				if (this.skieurRepository == null)
+				{
+					this.skieurRepository = new SkieurRepository(context);
+				}
+				return this.skieurRepository;
+			}
+		}
+
         public void Save()
         {
             context.SaveChanges();
