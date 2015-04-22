@@ -11,7 +11,7 @@ namespace statistiques_ski.Models
 	{
 		public int SortieID { get; set; }
 
-		[Display(Name = "Nombre de descente")]
+		[Display(Name = "Nombre de descentes")]
 		public int NbDescente { get; set; }
 
 		[Display(Name = "Nombre de pied verticaux")]
