@@ -61,7 +61,7 @@ namespace statistiques_ski.Controllers
             }
 
 			ViewBag.RegionID = new SelectList(unitOfWork.RegionRepository.Get(), "RegionID", "NomRegion", centreDeSki.RegionID);
-			ViewBag.SkieurID = new SelectList(unitOfWork.SkieurRepository.Get(), "SkieurID", "Nom", centreDeSki.SkieurID);
+			ViewBag.SkieurID = new SelectList(unitOfWork.SkieurRepository.Get(), "SkieurID", "Nom", centreDeSki.Region.SkieurID);
             return View(centreDeSki);
         }
 
@@ -78,7 +78,7 @@ namespace statistiques_ski.Controllers
                 return HttpNotFound();
             }
 			ViewBag.RegionID = new SelectList(unitOfWork.RegionRepository.Get(), "RegionID", "NomRegion", centreDeSki.RegionID);
-			ViewBag.SkieurID = new SelectList(unitOfWork.SkieurRepository.Get(), "SkieurID", "Nom", centreDeSki.SkieurID);
+			ViewBag.SkieurID = new SelectList(unitOfWork.SkieurRepository.Get(), "SkieurID", "Nom", centreDeSki.Region.SkieurID);
             return View(centreDeSki);
         }
 
@@ -97,7 +97,7 @@ namespace statistiques_ski.Controllers
                 return RedirectToAction("Index");
             }
 			ViewBag.RegionID = new SelectList(unitOfWork.RegionRepository.Get(), "RegionID", "NomRegion", centreDeSki.RegionID);
-			ViewBag.SkieurID = new SelectList(unitOfWork.SkieurRepository.Get(), "SkieurID", "Nom", centreDeSki.SkieurID);
+			ViewBag.SkieurID = new SelectList(unitOfWork.SkieurRepository.Get(), "SkieurID", "Nom", centreDeSki.Region.SkieurID);
             return View(centreDeSki);
         }
 

@@ -1,7 +1,85 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Saison</th>
+            @foreach (var item in ViewBag.saisons)
+            {
+                string saison = "";
+                if (item.SaisonSurDeuxAns)
+                {
+                    int temp = item.AnneeDebutSaison + 1;
+                    saison = "" + item.AnneeDebutSaison + "-" + temp;
+                }
+                else
+                {
+                    saison = "" + item.AnneeDebutSaison;
+                }
+                <th>@saison</th>
+
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var centreDeSki in ViewBag.centreDeSkis)
+        {
+            int nbSortieTotalAVie = 0;
+            foreach (var saison in ViewBag.saisons)
+            {
+                foreach (var sortie in ViewBag.sorties)
+                {
+                    if (sortie.CentreDeSkiID == centreDeSki.CentreDeSkiID)
+                    {
+                        if (sortie.SaisonID == saison.SaisonID)
+                        {
+                            nbSortieTotalAVie++;
+                        }
+                    }
+                }
+            }
+            if (nbSortieTotalAVie == 0)
+            {
+                <tr class="alert-warning">
+                    <td>@centreDeSki.Nom</td>
+                    @foreach (var saison in ViewBag.saisons)
+                    {
+                        <td></td>
+                    }
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>@centreDeSki.Nom</td>
+                    @foreach (var saison in ViewBag.saisons)
+                    {
+                        int nbSortieTotal = 0;
+                        foreach (var sortie in ViewBag.sorties)
+                        {
+                            if (sortie.CentreDeSkiID == centreDeSki.CentreDeSkiID)
+                            {
+                                if (sortie.SaisonID == saison.SaisonID)
+                                {
+                                    nbSortieTotal++;
+                                }
+                            }
+                        }
+                        if (nbSortieTotal == 0)
+                        {
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td class="text-center">@nbSortieTotal</td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>

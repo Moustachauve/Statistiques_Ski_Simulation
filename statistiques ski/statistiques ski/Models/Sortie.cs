@@ -27,10 +27,10 @@ namespace statistiques_ski.Models
 		public int CentreDeSkiID { get; set; }
 		public virtual CentreDeSki CentreDeSki { get; set; }
 
-		[Display(Name = "Skieur")]
+		/*[Display(Name = "Skieur")]
 		[ForeignKey("Skieur")]
 		public int SkieurID { get; set; }
-		public virtual Skieur Skieur { get; set; }
+		public virtual Skieur Skieur { get; set; }*/
 
 		[Display(Name = "Saison")]
 		[ForeignKey("Saison")]
