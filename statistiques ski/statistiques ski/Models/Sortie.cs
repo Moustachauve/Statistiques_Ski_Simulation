@@ -11,7 +11,7 @@ namespace statistiques_ski.Models
 	{
 		public int SortieID { get; set; }
 
-		[Display(Name="Nombre de descente")]
+		[Display(Name = "Nombre de descente")]
 		public int NbDescente { get; set; }
 
 		[Display(Name = "Nombre de pied verticaux")]
@@ -22,15 +22,17 @@ namespace statistiques_ski.Models
 		public DateTime Date { get; set; }
 
 
-        [Display(Name = "Centre de ski")]
+		[Display(Name = "Centre de ski")]
 		[ForeignKey("CentreDeSki")]
 		public int CentreDeSkiID { get; set; }
 		public virtual CentreDeSki CentreDeSki { get; set; }
 
+		[Display(Name = "Skieur")]
 		[ForeignKey("Skieur")]
 		public int SkieurID { get; set; }
 		public virtual Skieur Skieur { get; set; }
 
+		[Display(Name = "Saison")]
 		[ForeignKey("Saison")]
 		public int SaisonID { get; set; }
 		public virtual Saison Saison { get; set; }
