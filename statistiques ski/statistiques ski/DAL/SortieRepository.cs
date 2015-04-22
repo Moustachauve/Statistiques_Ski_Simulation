@@ -17,7 +17,7 @@ namespace statistiques_ski.DAL
 
 		public IEnumerable<Sortie> GetForSkieur(int userID)
 		{
-			return Get(includeProperties: "Region,Sorties", filter: x => x.Saison.SkieurID == userID);
+			return Get(includeProperties: "CentreDeSki,Saison", filter: x => x.Saison.SkieurID == userID);
 		}
 
 		public Sortie GetForSkieurByID(int id, int userID)
