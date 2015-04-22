@@ -9,8 +9,59 @@ namespace statistiques_ski.DAL
 	{
 		private Statistiques_SkiContext context = new Statistiques_SkiContext();
 
-		private SortieRepository sortieRepository;
+        private CentreDeSkiRepository centreDeSkiRepository;
+        public CentreDeSkiRepository CentreDeSkiRepository
+        {
+            get
+            {
+                if (this.centreDeSkiRepository == null)
+                {
+                    this.centreDeSkiRepository = new CentreDeSkiRepository(context);
+                }
+                return this.centreDeSkiRepository;
+            }
+        }
 
+        private SkieurRepository skieurRepository;
+        public SkieurRepository SkieurRepository
+        {
+            get
+            {
+                if (this.skieurRepository == null)
+                {
+                    this.skieurRepository = new SkieurRepository(context);
+                }
+                return this.skieurRepository;
+            }
+        }
+
+        private RegionRepository regionrepository;
+        public RegionRepository RegionRepository
+        {
+            get
+            {
+                if (this.regionrepository == null)
+                {
+                    this.regionrepository = new RegionRepository(context);
+                }
+                return regionrepository;
+            }
+        }
+
+        private SaisonRepository saisonrepository;
+        public SaisonRepository SaisonRepository
+        {
+            get
+            {
+                if (this.saisonrepository == null)
+                {
+                    this.saisonrepository = new SaisonRepository(context);
+                }
+                return saisonrepository;
+            }
+        }
+		private SortieRepository sortieRepository;
+        
 		public SortieRepository SortieRepository
 		{
 			get
