@@ -1,4 +1,5 @@
 ﻿using statistiques_ski.DAL;
+using statistiques_ski.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,16 @@ using System.Web.Mvc;
 
 namespace statistiques_ski.Controllers
 {
-    public class StatistiqueController : Controller
+    public class StatistiquesController : Controller
     {
 		private UnitOfWork uow = new UnitOfWork();
         // GET: Statistique
         public ActionResult Index()
         {
-			var sorties = uow.SortieRepository.Get();
-			var centreDeSkis = uow.CentreDeSkiRepository.Get();
-			var saisons = uow.SaisonRepository.Get();
+			ViewBag.sorties = uow.SortieRepository.Get();
+			ViewBag.centreDeSkis = uow.CentreDeSkiRepository.Get();
+			ViewBag.saisons = uow.SaisonRepository.Get();
+
             return View();
         }
     }
