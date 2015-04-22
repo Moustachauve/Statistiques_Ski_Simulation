@@ -121,6 +121,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CentreDeSkisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SortiesController.cs" />
     <Compile Include="DAL\CentreDeSkiRepository.cs" />
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\IUnitOfWork.cs" />
@@ -183,6 +184,11 @@
     <Content Include="Views\CentreDeSkis\Details.cshtml" />
     <Content Include="Views\CentreDeSkis\Edit.cshtml" />
     <Content Include="Views\CentreDeSkis\Index.cshtml" />
+    <Content Include="Views\Sorties\Create.cshtml" />
+    <Content Include="Views\Sorties\Delete.cshtml" />
+    <Content Include="Views\Sorties\Details.cshtml" />
+    <Content Include="Views\Sorties\Edit.cshtml" />
+    <Content Include="Views\Sorties\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
